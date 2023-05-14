@@ -57,3 +57,40 @@ qui permet de savoir quelle est la valeur actuelle de la ComboBox. Quand un item
 6. Ajoutez dans la classe principale `AppMaths` un gestionnaire d'événement sur le bouton de validation. Il devra afficher une nouvelle fenêtre indiquant le nombre de réponses correctes. Pour cela, vous utiliserez la classe [Alert](https://openjfx.io/javadoc/18/javafx.controls/javafx/scene/control/Alert.html) de JavaFX. La fonction `showAndWait()` vous permettra de rendre la fenêtre bloquante : tant que l'utilisateur n'a pas validé, il ne pourra pas revenir sur la fenêtre principale.
 
 7. Dans votre version actuelle, lorsqu'un utilisateur choisit un nombre d'exercices, l'intégralité de la liste des exercices est régénérée. Modifiez le code de façon à ce qu'un maximum des exercices incorrectement répondus soit régénéré d'abord avant de générer les nouveaux (si le nombre d'exercices incorrects est supérieur au choix `n` de la `ComboBox`, on affichera les `n` premiers exercices incorrects).
+
+### Exercice 2 - Un peu de géométrie
+
+On s'intéresse à un petit programme qui permet de dessiner des rectangles et qui devra rassembler à l'image ci-dessous.
+
+![](images/Exercice2.png)
+
+Cette application dessine un rectangle dans le panneau de couleur de fond bleu cyan et affiche le périmètre de ce rectangle dans le composant `TextField` correspondant.
+
+Le rectangle est défini par 2 points **A** et **B**, sommets opposés, donc symétriques par rapport au centre.
+
+Les 2 Sliders permettent de renseigner les valeurs des coordonnées du point **A**.
+
+Les boutons ![](images/Bouton+.png) et ![](images/Bouton-.png) permettent de modifier les valeurs des coordonnées du point B, coordonnées qui s'afficheront aussi dans le `TextField` (ici non éditable) figurant entre les deux boutons (non éditable).
+
+La classe principale est `RectanglePerimeterCalculatorAndDrawer`. Elle vous est intégralement donnée. À priori, vous n'aurez pas à la modifier.
+
+1. Utilisez l'outil _SceneBuilder_ pour compléter le fichier `fenetrePerimetre.fxml` pour que l'application ressemble à l'image ci-dessus. La fenêtre correspond à une grille et le panneau coloré du bas est déjà donné sous forme de conteneur `Pane`. **Les lignes du rectangle ne doivent pas encore être dessinées.**
+2. Définissez dans la classe `Rectangle` quatre attributs `IntegerProperty` `xA`, `yA`, `xB`, `yB`, ainsi qu'une propriété `perimetre` et instanciez-les dans le constructeur. Ajoutez un _getter_ sur chacune de ces propriétés (mais pas de _getter_ sur la valeur).
+3. Écrivez le code de la méthode `createBinding()` qui doit :
+    * gérer le calcul de la largeur du rectangle
+    * gérer le calcul de la hauteur du rectangle
+    * définir la liaison du périmètre avec les calculs des largeur et hauteur précédemment définis.
+
+La classe `PanneauPrincipal` représente le contrôleur pour le fichier FXML `fenetrePerimetre.fxml` et son code est à compléter dans les questions qui vont suivre.
+
+4.  Ajoutez quatre attributs de type `Line` qui correspondront aux côtés du rectangle à dessiner et complétez la méthode `addLines()` pour ajouter les 4 segments au panneau bleu du bas de la fenêtre.
+
+5. Écrivez les méthodes `incrementerBx()` et `decrementerBx()` : il s'agit de modifier la valeur des `TextField` correspondants du fichier FXML en tenant des contraintes suivantes : on ne peut pas décrémenter en dessous de 0, ni incrémenter au-dessus de `valeurMaxCoordonnees`. Mettez à jour le fichier FXML pour que le clic sur les boutons ![](images/Bouton+.png) et ![](images/Bouton-.png) invoque ces fonctions.
+
+6. Pour gérer le clic sur les boutons agissant sur l'ordonnée du second point, complétez le contenu des méthodes `setByMinusAction()` et `setByPlusAction()`.
+
+7. Complétez la méthode `bindSommetsRectangle()` : elle devra lier les coordonnées des 2 points **A** et **B** de l'attribut `rectangle` aux contrôles correspondants (les Sliders pour un point et les Buttons pour l'autre).
+
+8. Dans la méthode `bindPerimeterTextField()`, liez la propriété text du `TextField` représentant la valeur du périmètre à la propriété correspondante dans la classe `Rectangle`.
+
+9. Implémentez les méthodes `bindHorizontal1()` et `bindVertical1()`, qui adaptent le tracé de (seulement) 2 segments du rectangle dont une extrémité correspond au point **A** : liez, pour le segment concerné, les propriétés correspondant aux coordonnées de son point de départ (`startX` et `startY`) et de son point d'arrivée (`endX` et `endY`) aux coordonnées correspondantes dans le rectangle. Pour que les segments soient correctement dessinés sur le `Pane` correspondant de la fenêtre, il faudra appliquer un facteur multiplicatif égal à `ratioDessin`.

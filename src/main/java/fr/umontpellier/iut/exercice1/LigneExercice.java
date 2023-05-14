@@ -16,7 +16,7 @@ import javafx.util.converter.NumberStringConverter;
 public class LigneExercice extends HBox {
     private Label enonce;
     private TextField reponse;
-    private Exercice exercice;
+    private final Exercice exercice;
 
     public LigneExercice() {
         setPrefWidth(207);
