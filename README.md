@@ -15,11 +15,11 @@
 * [Email](mailto:petru.valicov@umontpellier.fr) pour une question d'ordre privée concernant le cours.
 
 ## TP 3 : gestionnaires d'événement et propriétés
+##### Sujet inspiré de l'examen à l'IUT d'Aix-Marseille Université en 2021
 
-### Exercice 1 - Un peu d'arithmétique (issu du sujet d'examen à l'IUT d'Aix-Marseille Université en 2021)
+### Exercice 1 - Un peu d'arithmétique
 
-On s'intéresse à un petit programme qui permet d'afficher des problèmes arithmétiques et qui affiche combien de réponses
-sont justes. Voici une présentation de l'application en deux étapes :
+On s'intéresse à un petit programme qui permet d'afficher des problèmes arithmétiques et qui affiche combien de réponses sont justes. Voici une présentation de l'application en deux étapes :
 Étape 1 :
 
 ![Etape 1](images/Etape1.png)
